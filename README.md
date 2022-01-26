@@ -26,7 +26,7 @@ requests.get(BASE + "SetRollsign", json={"Train": "TX3000", "Mode": "Normal", "T
 
 
 - [X] Base system
-- [ ] Add Seibu Laview support
+- [X] Add Seibu Laview support
 - [ ] Add E233 support
 - [ ] Add scrolling text support
 - [ ] Implement OROCSA
