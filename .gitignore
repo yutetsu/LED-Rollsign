@@ -1,9 +1,9 @@
 # LED-Rollsign / Folder
 database/SQLQueries/
 
-# LED-Rollsign / Test files
+# LED-Rollsign / Files
+output.gif
 test.py
-
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

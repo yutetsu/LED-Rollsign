@@ -18,5 +18,7 @@ class SetRollsign(Resource):
         match args['Train']:
             case "TX3000":
                 return TX3000(args).Main()
+            case "Laview":
+                return Laview(args).Main()
             case _:
                 return {'message': 'Train ROM not found'}, 404
