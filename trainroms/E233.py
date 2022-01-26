@@ -23,10 +23,12 @@ class E233():
                 self.NormalMode()
             case "Line":
                 self.LineMode()
+            case "Line-TypeChange":
+                self.LineTypeChangeMode()
             case "Next":
                 self.NextMode()
             case _:
-                return {'Message': 'Mode not found', 'RecivedMode': self.args.Mode,'ModeAvalible': self.data['ROM_Mode']}, 404
+                return {'Message': 'Mode not found', 'RecivedMode': self.args.Mode,'ModeAvalible': self.data['Mode']}, 404
         return {'Message': 'Rollsign set', 'Args': self.args}, 200
 
     def SpecialMode(self):
@@ -88,6 +90,33 @@ class E233():
         if self.args['Line'] is not None : 
             LineFrame =  Image.open(f"trainroms/data/{self.data['Name']}/Line/{self.args['Line']}.png")
             img.paste(LineFrame, (48, 0))
+        Framebuffer.append(img.convert("P", palette=Image.ADAPTIVE, colors=self.data['Colors']))
+        MakeGif()
+
+    def LineTypeChangeMode(self):
+        img = Image.new("RGB", (self.data['Width'], self.data['Height']), (0, 0, 0))
+        if self.args['Type'] is not None : 
+            TypeFrame =  Image.open(f"trainroms/data/{self.data['Name']}/Type/{self.args['Type']}_JP.png")
+            img.paste(TypeFrame, (0, 0))
+        if self.args['Dest'] is not None : 
+            DestFrame =  Image.open(f"trainroms/data/{self.data['Name']}/Dest/{self.args['Dest']}.png")
+            img.paste(DestFrame, (48, 0))
+        Framebuffer.append(img.convert("P", palette=Image.ADAPTIVE, colors=self.data['Colors']))
+        img = Image.new("RGB", (self.data['Width'], self.data['Height']), (0, 0, 0))
+        if self.args['Type'] is not None : 
+            TypeFrame =  Image.open(f"trainroms/data/{self.data['Name']}/Type/{self.args['Type']}_JP.png")
+            img.paste(TypeFrame, (0, 0))
+        if self.args['Line'] is not None : 
+            LineFrame =  Image.open(f"trainroms/data/{self.data['Name']}/Line/{self.args['Line']}.png")
+            img.paste(LineFrame, (48, 0))
+        Framebuffer.append(img.convert("P", palette=Image.ADAPTIVE, colors=self.data['Colors']))
+        img = Image.new("RGB", (self.data['Width'], self.data['Height']), (0, 0, 0))
+        if self.args['Type'] is not None : 
+            TypeFrame =  Image.open(f"trainroms/data/{self.data['Name']}/Type/{self.args['Type']}_JP.png")
+            img.paste(TypeFrame, (0, 0))
+        if self.args['TypeChange'] is not None : 
+            TypeChangeFrame =  Image.open(f"trainroms/data/{self.data['Name']}/TypeChange/{self.args['TypeChange']}.png")
+            img.paste(TypeChangeFrame, (48, 0))
         Framebuffer.append(img.convert("P", palette=Image.ADAPTIVE, colors=self.data['Colors']))
         MakeGif()
 
