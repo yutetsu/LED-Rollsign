@@ -2,6 +2,7 @@
 database/SQLQueries/
 
 # LED-Rollsign / Files
+desktop.files.json
 output.gif
 test.py
 

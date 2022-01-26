@@ -18,7 +18,7 @@ class Laview():
             case "Normal":
                 self.NormalMode()
             case _:
-                return {'Message': 'Mode not found', 'RecivedMode': self.args.Mode,'ModeAvalible': self.data['ROM_Mode']}, 404
+                return {'Message': 'Mode not found', 'RecivedMode': self.args.Mode,'ModeAvalible': self.data['Mode']}, 404
         return {'Message': 'Rollsign set', 'Args': self.args}, 200
 
     def SpecialMode(self):
