@@ -20,5 +20,17 @@ class SetRollsign(Resource):
                 return TX3000(args).Main()
             case "Laview":
                 return Laview(args).Main()
+            case "E233-0":
+                return E233(args).Main()
+            case "E233-1000":
+                return E233(args).Main()
+            case "E233-5000":
+                return E233(args).Main()
+            case "E233-6000":
+                return E233(args).Main()
+            case "E233-7000":
+                return E233(args).Main()
+            case "E233-8000":
+                return E233(args).Main()
             case _:
                 return {'message': 'Train ROM not found'}, 404
