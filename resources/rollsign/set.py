@@ -26,5 +26,11 @@ class SetRollsign(Resource):
                 return E233(args).Main()
             case "E233-5000":
                 return E233(args).Main()
+            case "E233-6000":
+                return E233(args).Main()
+            case "E233-7000":
+                return E233(args).Main()
+            case "E233-8000":
+                return E233(args).Main()
             case _:
                 return {'message': 'Train ROM not found'}, 404
