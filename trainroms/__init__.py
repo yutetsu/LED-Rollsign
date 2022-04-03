@@ -1,3 +1,3 @@
-from trainroms.TX3000 import TX3000
-from trainroms.Laview import Laview
-from trainroms.E233 import E233
+from trainroms.tx3000 import Tx3000
+from trainroms.laview import Laview
+from trainroms.e233 import E233

@@ -1,27 +1,27 @@
 from PIL import Image
-from database.RollsignData import RollsignDatabase
-from hardware.LED import LED_Driver
+from database import RollsignDatabase
+from hardware import LedDriver
 
 Framebuffer = []
 
-class TX3000():
+class Tx3000():
     def __init__(self, args):
         self.args = args
         self.data = RollsignDatabase().GetRollsignData(self.args['Train'])
 
-    def Main(self):
+    def main(self):
         match self.args.Mode:
             case "Special":
-                self.SpecialMode()
+                self.special_mode()
             case "Normal":
-                self.NormalMode()
-            case "Next":
+                self.normal_mode()
+            case "next_mode":
                 self.NextMode()
             case _:
                 return {'Message': 'Mode not found', 'RecivedMode': self.args.Mode,'ModeAvalible': self.data['Mode']}, 404
         return {'Message': 'Rollsign set', 'Args': self.args}, 200
 
-    def SpecialMode(self):
+    def special_mode(self):
         img = Image.new("RGB", (self.data['Width'], self.data['Height']), (0, 0, 0))
         if self.args['Type'] is not None : 
             SpecialFrame =  Image.open(f"trainroms/Images/{self.data['Name']}/Special/{self.args['Type']}.png")
@@ -29,7 +29,7 @@ class TX3000():
         Framebuffer.append(img.convert("P", palette=Image.ADAPTIVE, colors=self.data['Colors']))
         MakeGif()
 
-    def NormalMode(self):
+    def normal_mode(self):
         img = Image.new("RGB", (self.data['Width'], self.data['Height']), (0, 0, 0))
         if self.args['Type'] is not None : 
             TypeFrame =  Image.open(f"trainroms/Images/{self.data['Name']}/Type/{self.args['Type']}.png")
@@ -40,7 +40,7 @@ class TX3000():
         Framebuffer.append(img.convert("P", palette=Image.ADAPTIVE, colors=self.data['Colors']))
         MakeGif()
 
-    def NextMode(self):  
+    def next_mode(self):  
         img = Image.new("RGB", (self.data['Width'], self.data['Height']), (0, 0, 0))
         if self.args['Type'] is not None : 
             TypeFrame =  Image.open(f"trainroms/Images/{self.data['Name']}/Type/{self.args['Type']}.png")
@@ -69,5 +69,5 @@ class TX3000():
 def MakeGif():
     Framebuffer[0].save('output.gif', format='GIF', save_all=True, append_images=Framebuffer[1:], optimize=False, duration=3000, loop=0)
     Framebuffer.clear()
-    LED_Driver().Clear()  
-    LED_Driver().Show()
+    LedDriver().clear()  
+    LedDriver().show()
