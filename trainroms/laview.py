@@ -7,10 +7,10 @@ Framebuffer = []
 class Laview():
     def __init__(self, args):
         self.args = args
-        self.data = RollsignDatabase().GetRollsignData(self.args['Train'])
+        self.data = RollsignDatabase().GetRollsignData(self.args['train'])
 
     def main(self):
-        match self.args.Mode:
+        match self.args.mode:
             case "Special":
                 self.special_mode()
             case "TypeOnly":
@@ -18,48 +18,48 @@ class Laview():
             case "Normal":
                 self.normal_mode()
             case _:
-                return {'Message': 'Mode not found', 'RecivedMode': self.args.Mode,'ModeAvalible': self.data['Mode']}, 404
-        return {'Message': 'Rollsign set', 'Args': self.args}, 200
+                return {'message': 'Mode not found', 'recived_mode': self.args.Mode,'mode_avalible': self.data['mode']}, 404
+        return {'message': 'Rollsign set', 'args': self.args}, 200
 
     def special_mode(self):
-        img = Image.new("RGB", (self.data['Width'], self.data['Height']), (0, 0, 0))
-        if self.args['Type'] is not None : 
-            SpecialFrame =  Image.open(f"trainroms/Images/{self.data['Name']}/Special/{self.args['Type']}.png")
+        img = Image.new("RGB", (self.data['width'], self.data['height']), (0, 0, 0))
+        if self.args['type'] is not None : 
+            SpecialFrame =  Image.open(f"trainroms/Images/{self.data['name']}/Special/{self.args['type']}.png")
             img.paste(SpecialFrame, (0, 0))
-        Framebuffer.append(img.convert("P", palette=Image.ADAPTIVE, colors=self.data['Colors']))
+        Framebuffer.append(img.convert("P", palette=Image.ADAPTIVE, colors=self.data['colors']))
         MakeGif()
     
     def type_only_mode(self):
-        img = Image.new("RGB", (self.data['Width'], self.data['Height']), (0, 0, 0))
-        if self.args['Type'] is not None : 
-            TypeFrame =  Image.open(f"trainroms/Images/{self.data['Name']}/TypeOnly/{self.args['Type']}_JP.png")
+        img = Image.new("RGB", (self.data['width'], self.data['height']), (0, 0, 0))
+        if self.args['type'] is not None : 
+            TypeFrame =  Image.open(f"trainroms/Images/{self.data['name']}/TypeOnly/{self.args['type']}_JP.png")
             img.paste(TypeFrame, (0, 0))
-        Framebuffer.append(img.convert("P", palette=Image.ADAPTIVE, colors=self.data['Colors']))
-        img = Image.new("RGB", (self.data['Width'], self.data['Height']), (0, 0, 0))
-        if self.args['Type'] is not None : 
-            TypeFrame =  Image.open(f"trainroms/Images/{self.data['Name']}/TypeOnly/{self.args['Type']}_EN.png")
+        Framebuffer.append(img.convert("P", palette=Image.ADAPTIVE, colors=self.data['colors']))
+        img = Image.new("RGB", (self.data['width'], self.data['height']), (0, 0, 0))
+        if self.args['type'] is not None : 
+            TypeFrame =  Image.open(f"trainroms/Images/{self.data['name']}/TypeOnly/{self.args['type']}_EN.png")
             img.paste(TypeFrame, (0, 0))
-        Framebuffer.append(img.convert("P", palette=Image.ADAPTIVE, colors=self.data['Colors']))
+        Framebuffer.append(img.convert("P", palette=Image.ADAPTIVE, colors=self.data['colors']))
         MakeGif()
 
 
     def normal_mode(self):
-        img = Image.new("RGB", (self.data['Width'], self.data['Height']), (0, 0, 0))
-        if self.args['Type'] is not None : 
-            TypeFrame =  Image.open(f"trainroms/Images/{self.data['Name']}/Type/{self.args['Type']}_JP.png")
+        img = Image.new("RGB", (self.data['width'], self.data['height']), (0, 0, 0))
+        if self.args['type'] is not None : 
+            TypeFrame =  Image.open(f"trainroms/Images/{self.data['name']}/Type/{self.args['type']}_JP.png")
             img.paste(TypeFrame, (0, 0))
-        if self.args['Dest'] is not None : 
-            DestFrame =  Image.open(f"trainroms/Images/{self.data['Name']}/Dest/{self.args['Dest']}_JP.png")
+        if self.args['dest'] is not None : 
+            DestFrame =  Image.open(f"trainroms/Images/{self.data['name']}/Dest/{self.args['dest']}_JP.png")
             img.paste(DestFrame, (39, 0))
-        Framebuffer.append(img.convert("P", palette=Image.ADAPTIVE, colors=self.data['Colors']))
-        img = Image.new("RGB", (self.data['Width'], self.data['Height']), (0, 0, 0))
-        if self.args['Type'] is not None : 
-            TypeFrame =  Image.open(f"trainroms/Images/{self.data['Name']}/Type/{self.args['Type']}_EN.png")
+        Framebuffer.append(img.convert("P", palette=Image.ADAPTIVE, colors=self.data['colors']))
+        img = Image.new("RGB", (self.data['width'], self.data['height']), (0, 0, 0))
+        if self.args['type'] is not None : 
+            TypeFrame =  Image.open(f"trainroms/Images/{self.data['name']}/Type/{self.args['type']}_EN.png")
             img.paste(TypeFrame, (0, 0))
-        if self.args['Dest'] is not None : 
-            DestFrame =  Image.open(f"trainroms/Images/{self.data['Name']}/Dest/{self.args['Dest']}_EN.png")
+        if self.args['dest'] is not None : 
+            DestFrame =  Image.open(f"trainroms/Images/{self.data['name']}/Dest/{self.args['dest']}_EN.png")
             img.paste(DestFrame, (39, 0))
-        Framebuffer.append(img.convert("P", palette=Image.ADAPTIVE, colors=self.data['Colors']))
+        Framebuffer.append(img.convert("P", palette=Image.ADAPTIVE, colors=self.data['colors']))
         MakeGif()
    
 
