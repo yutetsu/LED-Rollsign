@@ -29,4 +29,4 @@ requests.get(BASE + "SetRollsign", json={"Train": "TX3000", "Mode": "Normal", "T
 - [X] Add Seibu Laview support
 - [X] Add E233 support
 - [X] Add scrolling text support
-- [ ] Implement OROCSA
+- [ ] Implement OTMS-Client
