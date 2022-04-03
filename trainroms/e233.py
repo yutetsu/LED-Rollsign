@@ -30,8 +30,8 @@ class E233():
             case "StopsAt":
                 self.stops_at_mode()
             case _:
-                return {'Message': 'Mode not found', 'RecivedMode': self.args.Mode,'ModeAvalible': self.data['Mode']}, 404
-        return {'Message': 'Rollsign set', 'Args': self.args}, 200
+                return {'message': 'Mode not found', 'recived_mode': self.args.Mode,'mode_avalible': self.data['mode']}, 404
+        return {'message': 'Rollsign set', 'args': self.args}, 200
 
     def sepcial_mode(self):
         img = Image.new("RGB", (self.data['width'], self.data['height']), (0, 0, 0))
